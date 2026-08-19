@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -60,6 +60,12 @@ namespace AntDesign
         /// <default value="true" />
         [Parameter]
         public bool Closable { get; set; } = true;
+
+        /// <summary>
+        /// Triggered before true closing, can prevent the closing
+        /// </summary>
+        [Parameter]
+        public EventCallback<CloseEventArgs<MouseEventArgs>> OnClosing { get; set; }
 
         internal bool IsActive => _isActive;
 
@@ -144,6 +150,26 @@ namespace AntDesign
             _hasClosed = true;
 
             Dispose();
+        }
+
+        private async Task OnCloseClick(MouseEventArgs e)
+        {
+            var closeEvent = new CloseEventArgs<MouseEventArgs>(e);
+
+            if (OnClosing.HasDelegate)
+            {
+                await OnClosing.InvokeAsync(closeEvent);
+            }
+
+            if (closeEvent.Cancel)
+            {
+                return;
+            }
+
+            if (Parent != null)
+            {
+                await Parent.RemoveTab(this);
+            }
         }
 
         protected override void Dispose(bool disposing)
