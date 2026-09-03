@@ -33,7 +33,7 @@ Keyboard navigation is available when the focus is on the tab.
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| ActiveKey | Current TabPane's key£¬support two-way binding. | string | - |
+| ActiveKey | Current TabPane's key, supports two-way binding. | string | - |
 | Animated | Whether to change tabs with animation. Only works while `TabPosition="TabPosition.Top"\|"TabPosition.Bottom"` | boolean | `false` |
 | DefaultActiveKey | Initial active TabPane's key, if `ActiveKey` is not set. | string | - |
 | HideAdd | Hide plus icon or not. Only works while `Type="TabType.EditableCard"` | boolean | `false` |
