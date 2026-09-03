@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -62,7 +62,7 @@ namespace AntDesign
         public bool Closable { get; set; } = true;
 
         /// <summary>
-        /// Triggered before true closing, can prevent the closing
+        /// Callback executed before the tab is closed. The callback can cancel the closing operation.
         /// </summary>
         [Parameter]
         public EventCallback<CloseEventArgs<MouseEventArgs>> OnClosing { get; set; }
