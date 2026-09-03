@@ -42,7 +42,6 @@
         panes.Add(new Pane($"Tab {key}", $"Content of Tab Pane {key}", activeKey));
     }
 
-
     private async Task ConfirmClosing(CloseEventArgs<MouseEventArgs> args)
     {
         var result = await ConfirmService.Show(
